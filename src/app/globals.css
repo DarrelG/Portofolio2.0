@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.body::-webkit-scrollbar {
+  display: none;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+body{
+  font-family: 'Josefin Sans', sans-serif;
+  scrollbar-width: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.mainContainer{
+  background-color: #333645;
+  height: 75vh;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.fullName{
+  transform: translateX(-100%);
+  transition: transform 1.4s ease-out;
+  opacity: 0;
+}
+
+.extraLine{
+  transform: translateX(-500%);
+  transition: transform 1.2s ease-out;
+  background-color: #fec262;
+  border-radius: 0.125rem;
+  opacity: 0;
+}
+
+.socialMedia{
+  transform: translateY(200%);
+  transition: transform 1s ease-out;
+  opacity: 0;
+}
+
+.intro{
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.title{
+  transform: translateX(75%);
+  opacity: 0;
+
+}
+.desc{
+  transform: translateX(50%);
+  opacity: 0;
+}
+
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: white;
+  transform: translateY(300%);
+  transition: transform 1s ease-out;
+  opacity: 0;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: orange;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: orange;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(0.9);
+  transform-origin: bottom left;
+}
+
+#Works{
+  background-color: #242734;
+  height: 75vh;
+}
+
+.groupWork{
+  width: 50%;
+  opacity: 0;
+}
+
+.gw1{
+  transform: translateX(100%);
+}
+
+.gw2{
+  transform: translateX(125%);
+}
+
+.gw3{
+  transform: translateX(150%);
+}
+
+.btn{
+  background-color: #333645;
+  transform: translateY(80%);
+  opacity: 0;
+}
+
+.tech{
+  transform: translateY(20%);
+  opacity: 0;
+  margin-top: -2rem;
+  transition: .5s ease-in;
+}
+
+#Contact{
+  background-color: #333645;
+  height: 75vh;
+}
+
+.slide-in{
+  transform: translateX(0%);
+  transition: .75s ease-out;
+  opacity: 1;
 }
