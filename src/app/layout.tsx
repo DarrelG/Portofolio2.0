@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       setAnimateToCenter(true);
     } else {
       setAnimateToCenter(false);
-    }
+    } 
   }, [pathname]);
 
   return (
