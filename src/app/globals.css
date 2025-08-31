@@ -49,14 +49,18 @@ body{
   opacity: 0;
 }
 
+.ctas{
+  transform: translateY(300%);
+  opacity: 0;
+  text-transform: uppercase;
+}
+
 .cta {
   border: none;
   background: none;
   cursor: pointer;
   color: white;
-  transform: translateY(300%);
   transition: transform 1s ease-out;
-  opacity: 0;
 }
 
 .cta span {
@@ -64,7 +68,6 @@ body{
   letter-spacing: 4px;
   font-size: 14px;
   padding-right: 15px;
-  text-transform: uppercase;
 }
 
 .cta svg {
@@ -141,11 +144,15 @@ body{
 
 #Contact{
   background-color: #333645;
-  height: 75vh;
+  height: 90vh;
 }
 
 .slide-in{
   transform: translateX(0%);
   transition: .75s ease-out;
   opacity: 1;
+}
+
+.aboutme{
+  height: 100vh;
 }
