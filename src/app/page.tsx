@@ -219,13 +219,13 @@ const Home = () =>{
           </div>
           <div className="highlightPreview relative h-[400px] flex justify-center items-center">
             <div className={`groupWork gw1 ${animate2 ? `slide-in` : ''} relative -top-10 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-10 hover:z-50`}>
-              <img src="/image1.png" alt="Image 1" className="w-full h-full object-cover rounded-lg shadow-xl" />
+              <img src="./image1.png" alt="Image 1" className="w-full h-full object-cover rounded-lg shadow-xl" />
             </div>
             <div className={`groupWork gw2 ${animate2 ? `slide-in` : ''} absolute top-0 left-90 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-0 hover:z-50`}>
-              <img src="/image2.png" alt="Image 2" className="w-full h-full object-cover rounded-lg shadow-xl" />
+              <img src="./image2.png" alt="Image 2" className="w-full h-full object-cover rounded-lg shadow-xl" />
             </div>
             <div className={`groupWork gw3 ${animate2 ? `slide-in` : ''} absolute top-25 left-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-0 hover:z-50`}>
-              <img src="/image3.png" alt="Image 3" className="w-full h-full object-cover rounded-lg shadow-xl" />
+              <img src="./image3.png" alt="Image 3" className="w-full h-full object-cover rounded-lg shadow-xl" />
             </div>
           </div>
         </div>
