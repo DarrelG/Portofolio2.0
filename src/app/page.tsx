@@ -73,7 +73,7 @@ const Home = () =>{
   }, []);
 
   return (
-    <div className="text-white body snap-y snap-mandatory overflow-y-scroll h-screen">
+    <div className="text-white body snap-y snap-mandatory overflow-y-scroll h-screen overflow-x-hidden">
       <section ref={homeRef} className="mainContainer p-5 2xl:flex 2xl:p-20 snap-start h-screen" id="Home">
         <div className={`profile w-screen 2xl:w-1/2 2xl:ml-40`}>
           <div className={`fullName ${animate ? `slide-in` : ''} flex 2xl:block text-3xl 2xl:text-7xl m-2 mb-10 font-bold`}>
