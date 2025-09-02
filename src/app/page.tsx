@@ -74,14 +74,14 @@ const Home = () =>{
 
   return (
     <div className="text-white body snap-y snap-mandatory overflow-y-scroll h-screen">
-      <section ref={homeRef} className="mainContainer flex p-20 snap-start h-screen" id="Home">
-        <div className={`profile w-1/2 ml-40`}>
-          <div className={`fullName ${animate ? `slide-in` : ''} text-7xl m-2 mb-10 font-bold`}>
-            <p>Darrel</p><p>Gautama.</p>
+      <section ref={homeRef} className="mainContainer p-5 2xl:flex 2xl:p-20 snap-start h-screen" id="Home">
+        <div className={`profile w-screen 2xl:w-1/2 2xl:ml-40`}>
+          <div className={`fullName ${animate ? `slide-in` : ''} flex 2xl:block text-3xl 2xl:text-7xl m-2 mb-10 font-bold`}>
+            <p>Darrel&nbsp;</p><p>Gautama.</p>
           </div>
           <div className={`extraLine ${animate? `slide-in` : ''} h-2 w-15 m-2 ml-4`}>
           </div>
-          <div className={`socialMedia ${animate? `slide-in` : ''} flex gap-10 m-2 mt-35 ml-2`}>
+          <div className={`socialMedia ${animate? `slide-in` : ''} hidden 2xl:flex gap-10 m-2 mt-35 ml-2`}>
             <div className="group relative text-white">
               <a href="https://github.com/DarrelG" target="_blank">
               <button>
@@ -139,8 +139,8 @@ const Home = () =>{
           </div>
         </div>
 
-        <div className="container w-3/5 ml-30">
-          <div className={`menu flex gap-5 text-4xl mb-10 ml-10 z-50
+        <div className="container w-3/5 2xl:ml-30">
+          <div className={`menu hidden 2xl:flex gap-5 text-4xl mb-10 ml-10 z-50
             ${isStickyMenu ? 'fixed right-0 top-1/2 -translate-y-1/2 flex-col p-4 text-xl' : 'relative ml-10'}`}>
             {menu.map((item) => (
               <button
@@ -157,18 +157,18 @@ const Home = () =>{
               </button>
             ))}  
           </div>
-          <div className="wrapper w-3/5">
-            <div className={`intro ${animate ? `slide-in` : ''} text-gray-500 text-2xl ml-10 mb-5`}>
+          <div className="wrapper w-full 2xl:w-3/5 mt-10 2xl:mt-0 pl-5 2xl:pl-0">
+            <div className={`intro ${animate ? `slide-in` : ''} text-gray-500 2xl:text-2xl 2xl:ml-10 mb-5`}>
               — Introductions
             </div>
-            <div className={`title ${animate ? `slide-in` : ''} text-3xl ml-10 mb-5`}>
+            <div className={`title ${animate ? `slide-in` : ''} text-xl 2xl:text-3xl 2xl:ml-10 mb-5`}>
               Software Engineer and Developer, based in Tangerang
             </div>
-            <div className={`desc ${animate ? `slide-in` : ''} ml-10 text-gray-500`}>
+            <div className={`desc ${animate ? `slide-in` : ''} 2xl:xl 2xl:ml-10 text-gray-500`}>
               Programming since 2020, interested on technology. Keep learing
             </div>
           </div>
-          <button className={`cta ctas ${animate ? `slide-in` : ''} flex m-10`} onClick={myStoryBtn}>
+          <button className={`cta ctas ${animate ? `slide-in` : ''} flex 2xl:m-10 pl-5 2xl:pl-0 pt-20 2xl:pt-0 `} onClick={myStoryBtn}>
             <span className="hover-underline-animation"> My Story </span>
             <svg
               id="arrow-horizontal"
@@ -189,13 +189,13 @@ const Home = () =>{
         </div>
       </section>
 
-      <section id="Works" className="snap-start h-screen p-20" ref={worksRef}>
-        <div className="worksWrapper flex gap-5">
-          <div className="highlight ml-40 w-1/2">
-            <div className="worksTitle text-2xl text-gray-500 mb-10">
+      <section id="Works" className="snap-start p-10 2xl:p-20" ref={worksRef}>
+        <div className="worksWrapper 2xl:flex gap-5">
+          <div className="highlight w-11/12 2xl:ml-40 2xl:w-1/2">
+            <div className="worksTitle 2xl:text-2xl text-gray-500 mb-10">
               — Content
             </div>
-            <div className="worksText text-3xl">
+            <div className="worksText text-xl 2xl:text-3xl">
               Project Highlight
             </div><br />
             <div className="highlightTitle text-3xl text-gray-500">
@@ -218,18 +218,18 @@ const Home = () =>{
             </div>
           </div>
           <div className="highlightPreview relative h-[400px] flex justify-center items-center">
-            <div className={`groupWork gw1 ${animate2 ? `slide-in` : ''} relative -top-10 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-10 hover:z-50`}>
+            <div className={`groupWork gw1 ${animate2 ? `slide-in` : ''} relative -top-57 left-20 2xl:left-0 2xl:-top-10 2xl:grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-10 hover:z-50`}>
               <img src="./image1.png" alt="Image 1" className="w-full h-full object-cover rounded-lg shadow-xl" />
             </div>
-            <div className={`groupWork gw2 ${animate2 ? `slide-in` : ''} absolute top-0 left-90 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-0 hover:z-50`}>
+            <div className={`groupWork gw2 ${animate2 ? `slide-in` : ''} hidden 2xl:block absolute top-0 left-90 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-0 hover:z-50`}>
               <img src="./image2.png" alt="Image 2" className="w-full h-full object-cover rounded-lg shadow-xl" />
             </div>
-            <div className={`groupWork gw3 ${animate2 ? `slide-in` : ''} absolute top-25 left-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-0 hover:z-50`}>
+            <div className={`groupWork gw3 ${animate2 ? `slide-in` : ''} hidden 2xl:block absolute top-25 left-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out z-0 hover:z-50`}>
               <img src="./image3.png" alt="Image 3" className="w-full h-full object-cover rounded-lg shadow-xl" />
             </div>
           </div>
         </div>
-        <div className={`tech ${animate2 ? `slide-in` : ''} flex float-right gap-5 justify-center content-center w-1/2 `}>
+        <div className={`tech ${animate2 ? `slide-in` : ''} hidden 2xl:flex float-right gap-5 justify-center content-center w-1/2 `}>
           <svg xmlns="http://www.w3.org/2000/svg" width="5%" height="5%" viewBox="0 0 256 256" version="1.1" preserveAspectRatio="xMidYMid" className="self-center">
             <g>
               <title>Next.Js</title>
@@ -285,13 +285,13 @@ const Home = () =>{
         </div>
       </section>
       
-      <section id="Contact" className="snap-start h-screen" ref={contactRef}>
-        <div className="contactWrapper flex p-20 w-3/4">
-          <div className="firstContent ml-40 text-3xl w-1/2">
+      <section id="Contact" className="snap-start" ref={contactRef}>
+        <div className="contactWrapper flex p-10 2xl:p-20 2xl:w-3/4">
+          <div className="firstContent 2xl:ml-40 text-3xl 2xl:w-1/2">
             <div className="text-2xl text-gray-500 mb-10">
               — Contact
             </div>
-            <div>
+            <div className="text-center 2xl:text-left">
               <p>Got a project?</p><p>Let&apos;s talk.</p><br />
               <p className="text-xl text-gray-500">Lets talk about your task or feel free to say hi</p>
               <a href="mailto:gautamadarrel06@gmail.com?subject=From%20Website%20Email">
