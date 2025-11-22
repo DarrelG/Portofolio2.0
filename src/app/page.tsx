@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 
-const Home = () =>{
+const Home = () => {
   const homeRef = useRef<HTMLDivElement>(null);
   const worksRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
@@ -13,11 +13,11 @@ const Home = () =>{
   const [active, setActive] = useState('Home');
   const [isStickyMenu, setIsStickyMenu] = useState(false);
 
-  const myStoryBtn = () =>{
+  const myStoryBtn = () => {
     router.push('MyStory');
   }
 
-  const myProjectBtn = () =>{
+  const myProjectBtn = () => {
     router.push('MyProject');
   }
 
@@ -41,161 +41,166 @@ const Home = () =>{
   useEffect(() => {
     setAnimate(true);
     const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        const isVisible = entry.isIntersecting;
-        const target = entry.target as HTMLDivElement;
+      entries => {
+        entries.forEach(entry => {
+          const isVisible = entry.isIntersecting;
+          const target = entry.target as HTMLDivElement;
 
-        if (target.id === 'Home') {
-          setAnimate(isVisible);
-          setIsStickyMenu(!isVisible);
-          console.log(target.id);
-          if (isVisible) setActive('Home');
-        } else if (target.id === 'Works') {
-          setAnimate2(isVisible);
-          console.log("Works");
-          if (isVisible) setActive('Works');
-        } else if (target.id === 'Contact') {
-          if (isVisible) setActive('Contact');
-        }
-      });
-    },
-    { threshold: 0.6, }
-  );
+          if (target.id === 'Home') {
+            setAnimate(isVisible);
+            setIsStickyMenu(!isVisible);
+            console.log(target.id);
+            if (isVisible) setActive('Home');
+          } else if (target.id === 'Works') {
+            setAnimate2(isVisible);
+            console.log("Works");
+            if (isVisible) setActive('Works');
+          } else if (target.id === 'Contact') {
+            if (isVisible) setActive('Contact');
+          }
+        });
+      },
+      { threshold: 0.6, }
+    );
 
-  const sections = [homeRef, worksRef, contactRef];
+    const sections = [homeRef, worksRef, contactRef];
 
-  sections.forEach(ref => {
-    if (ref.current) observer.observe(ref.current);
-  });
-
-  return () => {
     sections.forEach(ref => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (ref.current) observer.observe(ref.current);
     });
-  };
+
+    return () => {
+      sections.forEach(ref => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
   }, []);
 
   return (
     <div className="text-white body snap-y snap-mandatory overflow-y-scroll h-screen overflow-x-hidden">
-      <section ref={homeRef} className="mainContainer p-5 2xl:flex 2xl:p-20 snap-start h-screen" id="Home">
-        <div className={`profile w-screen 2xl:w-1/2 2xl:ml-40`}>
-          <div className={`fullName ${animate ? `slide-in` : ''} flex 2xl:block text-3xl 2xl:text-7xl m-2 mb-10 font-bold`}>
-            <p>Darrel&nbsp;</p><p>Gautama.</p>
-          </div>
-          <div className={`extraLine ${animate? `slide-in` : ''} h-2 w-15 m-2 ml-4`}>
-          </div>
-          <div className={`socialMedia ${animate? `slide-in` : ''} hidden 2xl:flex gap-10 m-2 mt-35 ml-2`}>
-            <div className="group relative text-white">
-              <a href="https://github.com/DarrelG" target="_blank">
-              <button>
-                <svg strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" className="hover:cursor-pointer w-8 hover:scale-125 duration-200 hover:strokeblue-500"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </button>
-              </a>
-              <span className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black bg-white rounded-lg shadow-lg transition-transform duration-300 ease-out scale-0 group-hover:scale-100">GitHub
-                <span>
-                </span>
-              </span>
+      <section ref={homeRef} className="mainContainer flex p-20 snap-start h-screen" id="Home">
+        <div className="max-w-screen-2xl content-center items-center m-auto">
+          <div className="flex m-auto">
+            <div className={`profile`}>
+              <div className={`fullName ${animate ? `slide-in` : ''} flex 2xl:block text-3xl 2xl:text-7xl m-2 mb-10 font-bold`}>
+                <p>Darrel&nbsp;</p><p>Gautama.</p>
+              </div>
+              <div className={`extraLine ${animate ? `slide-in` : ''} h-2 w-15 m-2 ml-4`}>
+              </div>
+              <div className={`socialMedia ${animate ? `slide-in` : ''} hidden 2xl:flex gap-10 m-2 mt-35 ml-2`}>
+                <div className="group relative text-white">
+                  <a href="https://github.com/DarrelG" target="_blank">
+                    <button>
+                      <svg strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" className="hover:cursor-pointer w-8 hover:scale-125 duration-200 hover:strokeblue-500"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </button>
+                  </a>
+                  <span className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black bg-white rounded-lg shadow-lg transition-transform duration-300 ease-out scale-0 group-hover:scale-100">GitHub
+                    <span>
+                    </span>
+                  </span>
+                </div>
+                <div className="group relative inline-block text-white">
+                  <a href="https://www.instagram.com/darrel06_/" target="_blank">
+                    <button className="focus:outline-none">
+                      <svg
+                        viewBox="0 0 16 16"
+                        className="bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 hover:cursor-pointer"
+                        fill="currentColor"
+                        height="30"
+                        width="30"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+                        ></path>
+                      </svg>
+                    </button>
+                  </a>
+                  <span
+                    className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black bg-white rounded-lg shadow-lg transition-transform duration-300 ease-out scale-0 group-hover:scale-100"
+                  >Instagram</span>
+                </div>
+                <div className="group relative text-white">
+                  <a href="https://www.linkedin.com/in/darrel-gautama-4304042b4/" target="_blank">
+                    <button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        height="30"
+                        width="30"
+                        className="w-8 hover:scale-125 duration-200 hover:text-blue-500 hover:cursor-pointer"
+                      >
+                        <path
+                          d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zm7.5 0h3.6v2.1h.05c.5-.95 1.75-2.1 3.6-2.1 3.85 0 4.55 2.55 4.55 5.85V24h-4v-8.25c0-1.95-.05-4.45-2.7-4.45-2.7 0-3.1 2.1-3.1 4.3V24h-4V8.5z"
+                        />
+                      </svg>
+                    </button>
+                  </a>
+                  <span
+                    className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black bg-white rounded-lg shadow-lg transition-transform duration-300 ease-out scale-0 group-hover:scale-100">
+                    LinkedIn
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="group relative inline-block text-white">
-              <a href="https://www.instagram.com/darrel06_/" target="_blank">
-              <button className="focus:outline-none">
+
+            <div className="container w-3/5 2xl:ml-30">
+              <div className={`menu hidden 2xl:flex gap-5 text-4xl mb-10 ml-10 z-50
+            ${isStickyMenu ? 'fixed right-0 top-1/2 -translate-y-1/2 flex-col p-4 text-xl' : 'relative ml-10'}`}>
+                {menu.map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => handleScrollTo(item.label)}
+                    className={`cursor-pointer flex flex-col items-center transition-all duration-300 ${active === item.label ? "text-white" : "text-gray-400"}`}>
+
+                    <span className={`capitalize font-semibold ${active === item.label ? 'grayscale' : ''}`}>
+                      {item.label}
+                    </span>
+                    {!isStickyMenu && active === item.label && (
+                      <span className="mt-1 w-1.5 h-1.5 bg-yellow-500 rounded-full transition transform scale-100"></span>
+                    )}
+                  </button>
+                ))}
+              </div>
+              <div className="wrapper w-full 2xl:w-3/5 mt-10 2xl:mt-0 pl-5 2xl:pl-0">
+                <div className={`intro ${animate ? `slide-in` : ''} text-gray-500 2xl:text-2xl 2xl:ml-10 mb-5`}>
+                  — Introductions
+                </div>
+                <div className={`title ${animate ? `slide-in` : ''} text-xl 2xl:text-3xl 2xl:ml-10 mb-5`}>
+                  Software Engineer and Developer, based in Tangerang
+                </div>
+                <div className={`desc ${animate ? `slide-in` : ''} 2xl:xl 2xl:ml-10 text-gray-500`}>
+                  Programming since 2020, interested on technology. Keep learing
+                </div>
+              </div>
+              <button className={`cta ctas ${animate ? `slide-in` : ''} flex 2xl:m-10 pl-5 2xl:pl-0 pt-20 2xl:pt-0 `} onClick={myStoryBtn}>
+                <span className="hover-underline-animation"> My Story </span>
                 <svg
-                  viewBox="0 0 16 16"
-                  className="bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 hover:cursor-pointer"
-                  fill="currentColor"
-                  height="30"
-                  width="30"
+                  id="arrow-horizontal"
                   xmlns="http://www.w3.org/2000/svg"
-                >
-                <path
-                  d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
-                ></path>
-                </svg>
-            </button>
-            </a>
-            <span
-              className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black bg-white rounded-lg shadow-lg transition-transform duration-300 ease-out scale-0 group-hover:scale-100"
-              >Instagram</span>
-            </div>
-            <div className="group relative text-white">
-              <a href="https://www.linkedin.com/in/darrel-gautama-4304042b4/" target="_blank">
-              <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  height="30"
                   width="30"
-                  className="w-8 hover:scale-125 duration-200 hover:text-blue-500 hover:cursor-pointer"
+                  height="10"
+                  viewBox="0 0 46 16"
                 >
                   <path
-                    d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zm7.5 0h3.6v2.1h.05c.5-.95 1.75-2.1 3.6-2.1 3.85 0 4.55 2.55 4.55 5.85V24h-4v-8.25c0-1.95-.05-4.45-2.7-4.45-2.7 0-3.1 2.1-3.1 4.3V24h-4V8.5z"
-                  />
+                    id="Path_10"
+                    data-name="Path 10"
+                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                    transform="translate(30)"
+                    fill="orange"
+                  ></path>
                 </svg>
               </button>
-              </a>
-              <span
-                className="absolute -top-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black bg-white rounded-lg shadow-lg transition-transform duration-300 ease-out scale-0 group-hover:scale-100">
-                LinkedIn
-              </span>
             </div>
           </div>
-        </div>
-
-        <div className="container w-3/5 2xl:ml-30">
-          <div className={`menu hidden 2xl:flex gap-5 text-4xl mb-10 ml-10 z-50
-            ${isStickyMenu ? 'fixed right-0 top-1/2 -translate-y-1/2 flex-col p-4 text-xl' : 'relative ml-10'}`}>
-            {menu.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleScrollTo(item.label)}
-                className={`cursor-pointer flex flex-col items-center transition-all duration-300 ${ active === item.label ? "text-white" : "text-gray-400"}`}>
-                
-                <span className={`capitalize font-semibold ${active === item.label ? 'grayscale' : ''}`}>
-                  {item.label}
-                </span>
-                {!isStickyMenu && active === item.label && (
-                <span className="mt-1 w-1.5 h-1.5 bg-yellow-500 rounded-full transition transform scale-100"></span>
-              )}
-              </button>
-            ))}  
-          </div>
-          <div className="wrapper w-full 2xl:w-3/5 mt-10 2xl:mt-0 pl-5 2xl:pl-0">
-            <div className={`intro ${animate ? `slide-in` : ''} text-gray-500 2xl:text-2xl 2xl:ml-10 mb-5`}>
-              — Introductions
-            </div>
-            <div className={`title ${animate ? `slide-in` : ''} text-xl 2xl:text-3xl 2xl:ml-10 mb-5`}>
-              Software Engineer and Developer, based in Tangerang
-            </div>
-            <div className={`desc ${animate ? `slide-in` : ''} 2xl:xl 2xl:ml-10 text-gray-500`}>
-              Programming since 2020, interested on technology. Keep learing
-            </div>
-          </div>
-          <button className={`cta ctas ${animate ? `slide-in` : ''} flex 2xl:m-10 pl-5 2xl:pl-0 pt-20 2xl:pt-0 `} onClick={myStoryBtn}>
-            <span className="hover-underline-animation"> My Story </span>
-            <svg
-              id="arrow-horizontal"
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="10"
-              viewBox="0 0 46 16"
-            >
-              <path
-                id="Path_10"
-                data-name="Path 10"
-                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                transform="translate(30)"
-                fill="orange"
-              ></path>
-            </svg>
-          </button>
         </div>
       </section>
 
       <section id="Works" className="snap-start p-10 2xl:p-20" ref={worksRef}>
-        <div className="worksWrapper 2xl:flex gap-5">
-          <div className="highlight w-11/12 2xl:ml-40 2xl:w-1/2">
+        <div className="max-w-screen-2xl content-center items-center m-auto">
+          <div className="worksWrapper flex gap-5">
+          <div className="highlight w-11/12 ml-20 w-1/2">
             <div className="worksTitle 2xl:text-2xl text-gray-500 mb-10">
               — Content
             </div>
@@ -241,17 +246,17 @@ const Home = () =>{
               </path>
             </g>
           </svg>
-          <svg viewBox="0 -198 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg"  preserveAspectRatio="xMidYMid" fill="#ffffffff" width="10%" height="10%">
+          <svg viewBox="0 -198 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="#ffffffff" width="10%" height="10%">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> 
+            <g id="SVGRepo_iconCarrier">
               <g>
-                <title>Vercel</title> 
-                <path d="M255.420487,28.975665 C235.427278,28.975665 221.011885,42.0147142 221.011885,61.5732881 C221.011885,81.1318619 237.238257,94.1709111 257.231466,94.1709111 C269.310696,94.1709111 279.959253,89.3899264 286.551217,81.3310696 L272.697227,73.3265422 C269.039049,77.3288059 263.479344,79.6649689 257.231466,79.6649689 C248.556876,79.6649689 241.186191,75.1375212 238.451613,67.893605 L289.195246,67.893605 C289.593662,65.8653084 289.829089,63.7645727 289.829089,61.5551783 C289.829089,42.0147142 275.413696,28.975665 255.420487,28.975665 Z M238.288625,55.2348613 C240.552349,48.0090549 246.745897,43.4634975 255.402377,43.4634975 C264.076967,43.4634975 270.270515,48.0090549 272.516129,55.2348613 L238.288625,55.2348613 L238.288625,55.2348613 Z M450.426712,28.975665 C430.433503,28.975665 416.01811,42.0147142 416.01811,61.5732881 C416.01811,81.1318619 432.244482,94.1709111 452.237691,94.1709111 C464.316921,94.1709111 474.965478,89.3899264 481.557442,81.3310696 L467.703452,73.3265422 C464.045274,77.3288059 458.485569,79.6649689 452.237691,79.6649689 C443.563101,79.6649689 436.192417,75.1375212 433.457838,67.893605 L484.201471,67.893605 C484.599887,65.8653084 484.835314,63.7645727 484.835314,61.5551783 C484.835314,42.0147142 470.419921,28.975665 450.426712,28.975665 L450.426712,28.975665 Z M433.31296,55.2348613 C435.576684,48.0090549 441.770232,43.4634975 450.426712,43.4634975 C459.101302,43.4634975 465.29485,48.0090549 467.540464,55.2348613 L433.31296,55.2348613 Z M362.630447,61.5732881 C362.630447,72.4391624 369.729485,79.6830787 380.740238,79.6830787 C388.201471,79.6830787 393.797397,76.2965478 396.676853,70.7730617 L410.585173,78.7956989 C404.826259,88.3938879 394.032824,94.1709111 380.740238,94.1709111 C360.728919,94.1709111 346.331636,81.1318619 346.331636,61.5732881 C346.331636,42.0147142 360.747029,28.975665 380.740238,28.975665 C394.032824,28.975665 404.808149,34.7526882 410.585173,44.3508772 L396.676853,52.3735144 C393.797397,46.8500283 388.201471,43.4634975 380.740238,43.4634975 C369.747595,43.4634975 362.630447,50.7074137 362.630447,61.5732881 Z M512,9.0548953 L512,92.3599321 L495.701188,92.3599321 L495.701188,9.0548953 L512,9.0548953 Z M66.9156763,-1.42108547e-14 L133.831353,115.90266 L0,115.90266 L66.9156763,-1.42108547e-14 Z M234.213922,9.0548953 L184.031692,95.9818902 L133.849462,9.0548953 L152.665535,9.0548953 L184.031692,63.3842671 L215.397849,9.0548953 L234.213922,9.0548953 Z M340.898698,30.786644 L340.898698,48.3350311 C339.087719,47.8098472 337.168081,47.4476514 335.103565,47.4476514 C324.581777,47.4476514 316.993775,54.6915676 316.993775,65.557442 L316.993775,92.3599321 L300.694963,92.3599321 L300.694963,30.786644 L316.993775,30.786644 L316.993775,47.4476514 C316.993775,38.2478778 327.696661,30.786644 340.898698,30.786644 Z" fill="#000000" fillRule="nonzero"> 
+                <title>Vercel</title>
+                <path d="M255.420487,28.975665 C235.427278,28.975665 221.011885,42.0147142 221.011885,61.5732881 C221.011885,81.1318619 237.238257,94.1709111 257.231466,94.1709111 C269.310696,94.1709111 279.959253,89.3899264 286.551217,81.3310696 L272.697227,73.3265422 C269.039049,77.3288059 263.479344,79.6649689 257.231466,79.6649689 C248.556876,79.6649689 241.186191,75.1375212 238.451613,67.893605 L289.195246,67.893605 C289.593662,65.8653084 289.829089,63.7645727 289.829089,61.5551783 C289.829089,42.0147142 275.413696,28.975665 255.420487,28.975665 Z M238.288625,55.2348613 C240.552349,48.0090549 246.745897,43.4634975 255.402377,43.4634975 C264.076967,43.4634975 270.270515,48.0090549 272.516129,55.2348613 L238.288625,55.2348613 L238.288625,55.2348613 Z M450.426712,28.975665 C430.433503,28.975665 416.01811,42.0147142 416.01811,61.5732881 C416.01811,81.1318619 432.244482,94.1709111 452.237691,94.1709111 C464.316921,94.1709111 474.965478,89.3899264 481.557442,81.3310696 L467.703452,73.3265422 C464.045274,77.3288059 458.485569,79.6649689 452.237691,79.6649689 C443.563101,79.6649689 436.192417,75.1375212 433.457838,67.893605 L484.201471,67.893605 C484.599887,65.8653084 484.835314,63.7645727 484.835314,61.5551783 C484.835314,42.0147142 470.419921,28.975665 450.426712,28.975665 L450.426712,28.975665 Z M433.31296,55.2348613 C435.576684,48.0090549 441.770232,43.4634975 450.426712,43.4634975 C459.101302,43.4634975 465.29485,48.0090549 467.540464,55.2348613 L433.31296,55.2348613 Z M362.630447,61.5732881 C362.630447,72.4391624 369.729485,79.6830787 380.740238,79.6830787 C388.201471,79.6830787 393.797397,76.2965478 396.676853,70.7730617 L410.585173,78.7956989 C404.826259,88.3938879 394.032824,94.1709111 380.740238,94.1709111 C360.728919,94.1709111 346.331636,81.1318619 346.331636,61.5732881 C346.331636,42.0147142 360.747029,28.975665 380.740238,28.975665 C394.032824,28.975665 404.808149,34.7526882 410.585173,44.3508772 L396.676853,52.3735144 C393.797397,46.8500283 388.201471,43.4634975 380.740238,43.4634975 C369.747595,43.4634975 362.630447,50.7074137 362.630447,61.5732881 Z M512,9.0548953 L512,92.3599321 L495.701188,92.3599321 L495.701188,9.0548953 L512,9.0548953 Z M66.9156763,-1.42108547e-14 L133.831353,115.90266 L0,115.90266 L66.9156763,-1.42108547e-14 Z M234.213922,9.0548953 L184.031692,95.9818902 L133.849462,9.0548953 L152.665535,9.0548953 L184.031692,63.3842671 L215.397849,9.0548953 L234.213922,9.0548953 Z M340.898698,30.786644 L340.898698,48.3350311 C339.087719,47.8098472 337.168081,47.4476514 335.103565,47.4476514 C324.581777,47.4476514 316.993775,54.6915676 316.993775,65.557442 L316.993775,92.3599321 L300.694963,92.3599321 L300.694963,30.786644 L316.993775,30.786644 L316.993775,47.4476514 C316.993775,38.2478778 327.696661,30.786644 340.898698,30.786644 Z" fill="#000000" fillRule="nonzero">
                 </path>
-              </g> 
+              </g>
             </g>
           </svg>
-          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="7%" height="7%"  className="self-center"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="7%" height="7%" className="self-center"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
               <title>Tailwind CSS</title>
               <path d="M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z" fill="#44a8b3">
@@ -281,14 +286,15 @@ const Home = () =>{
           </svg>
           <svg className="self-center" xmlns="http://www.w3.org/2000/svg" width="7%" height="7%" viewBox="0 0 258 199" fill="none">
             <title>T3 Stack App</title>
-            <path fillRule="evenodd" clipRule="evenodd" d="M165.735 25.0701L188.947 0.972412H0.465994V25.0701H165.735Z" fill="#e2e8f0"/>
-            <path d="M163.981 96.3239L254.022 3.68314L221.206 3.68295L145.617 80.7609L163.981 96.3239Z" fill="#e2e8f0"/>
-            <path d="M233.658 131.418C233.658 155.075 214.48 174.254 190.823 174.254C171.715 174.254 155.513 161.738 150 144.439L146.625 133.848L127.329 153.143L129.092 157.336C139.215 181.421 163.034 198.354 190.823 198.354C227.791 198.354 257.759 168.386 257.759 131.418C257.759 106.937 244.399 85.7396 224.956 74.0905L220.395 71.3582L202.727 89.2528L210.788 93.5083C224.403 100.696 233.658 114.981 233.658 131.418Z" fill="#e2e8f0"/>
-            <path fillRule="evenodd" clipRule="evenodd" d="M88.2625 192.669L88.2626 45.6459H64.1648L64.1648 192.669H88.2625Z" fill="#e2e8f0"/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M165.735 25.0701L188.947 0.972412H0.465994V25.0701H165.735Z" fill="#e2e8f0" />
+            <path d="M163.981 96.3239L254.022 3.68314L221.206 3.68295L145.617 80.7609L163.981 96.3239Z" fill="#e2e8f0" />
+            <path d="M233.658 131.418C233.658 155.075 214.48 174.254 190.823 174.254C171.715 174.254 155.513 161.738 150 144.439L146.625 133.848L127.329 153.143L129.092 157.336C139.215 181.421 163.034 198.354 190.823 198.354C227.791 198.354 257.759 168.386 257.759 131.418C257.759 106.937 244.399 85.7396 224.956 74.0905L220.395 71.3582L202.727 89.2528L210.788 93.5083C224.403 100.696 233.658 114.981 233.658 131.418Z" fill="#e2e8f0" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M88.2625 192.669L88.2626 45.6459H64.1648L64.1648 192.669H88.2625Z" fill="#e2e8f0" />
           </svg>
         </div>
+        </div>
       </section>
-      
+
       <section id="Contact" className="snap-start" ref={contactRef}>
         <div className="contactWrapper flex p-10 2xl:p-20 2xl:w-3/4">
           <div className="firstContent 2xl:ml-40 text-3xl 2xl:w-1/2">
